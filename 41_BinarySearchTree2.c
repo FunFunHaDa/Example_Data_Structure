@@ -45,6 +45,7 @@ void BSTInsert(BTreeNode ** pRoot, BSTData data)
 	{
 		*pRoot = nNode;
 	}
+
 }
 
 BTreeNode * BSTSearch(BTreeNode * bst, BSTData target)
