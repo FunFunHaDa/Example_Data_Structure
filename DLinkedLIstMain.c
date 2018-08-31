@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include "ArrayList.h"
+#include<stdio.h>
+#include "DLinkedList.h"
 
 int main(void)
 {
@@ -13,7 +13,7 @@ int main(void)
 	LInsert(&list, 22);
 	LInsert(&list, 33);
 
-	printf("현제 데이터의 수: %d \n", LCount(&list));
+	printf("현재 데이터의 수: %d \n", LCount(&list));
 
 	if (LFirst(&list, &data))
 	{
@@ -24,6 +24,7 @@ int main(void)
 	}
 	printf("\n\n");
 
+	// 숫자 22을 검색하여 모두 삭제
 	if (LFirst(&list, &data))
 	{
 		if (data == 22)
@@ -36,7 +37,7 @@ int main(void)
 		}
 	}
 
-	printf("현재 데이터의 수 : %d \n", LCount(&list));
+	printf("현재 데이터의 수: %d \n", LCount(&list));
 
 	if (LFirst(&list, &data))
 	{
