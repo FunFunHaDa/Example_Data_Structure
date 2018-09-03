@@ -2,7 +2,7 @@
 #include<ctype.h>
 #include "ListBaseStack.h"
 
-int EvalPRNExp(char exp[])
+int EvalRPNExp(char exp[])
 {
 	Stack stack;
 	int expLen = strlen(exp);

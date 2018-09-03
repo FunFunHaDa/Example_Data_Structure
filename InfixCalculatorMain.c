@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include "InfixCalculator.h"
+#include<stdio.h>	// p 246 
+#include "InfixCalculator.h"	
 
 int main(void)
 {
