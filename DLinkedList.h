@@ -1,10 +1,14 @@
 #ifndef __D_LINKED_LIST_H__
 #define __D_LINKED_LIST_H__
 
+
 #define TRUE 1
 #define FALSE 0
 
-typedef int LData;
+#include "Slot2.h"
+typedef Slot LData;
+// typedef int LData;
+
 
 typedef struct _node
 {
@@ -24,7 +28,7 @@ typedef struct _linkedList
 typedef LinkedList List;
 
 void ListInit(List * plist);
-void LInsert(List * plist, LData * data);
+void LInsert(List * plist, LData data);
 
 int LFirst(List * plist, LData * pdata);
 int LNext(List * plist, LData * pdata);
