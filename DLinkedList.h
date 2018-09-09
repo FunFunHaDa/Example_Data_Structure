@@ -6,8 +6,8 @@
 #define FALSE 0
 
 #include "Slot2.h"
-typedef Slot LData;
-// typedef int LData;
+// typedef Slot LData;
+ typedef int LData;
 
 
 typedef struct _node
