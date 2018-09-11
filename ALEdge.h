@@ -7,4 +7,5 @@ typedef struct _edge
 	int v2;
 	int weight;
 }Edge;
+
 #endif // !__AL_EDGE__
