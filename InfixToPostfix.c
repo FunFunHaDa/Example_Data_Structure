@@ -59,7 +59,6 @@ void ConvToRPNExp(char exp[])
 			case '(':
 				SPush(&stack, tok);
 				break;
-
 			case ')':
 				while (1)
 				{
@@ -69,7 +68,6 @@ void ConvToRPNExp(char exp[])
 					convExp[idx++] = popOp;
 				}
 				break;
-
 			case '+': case '-':
 			case '*': case '/':
 				while (!SIsEmpty(&stack) && WhoPrecOp(SPeek(&stack), tok) >= 0)
