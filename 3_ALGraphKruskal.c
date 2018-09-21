@@ -1,23 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "50_ALGraphKruskal.h"
-#include "14_DLinkedList.h"
-#include "17_ArrayBaseStack.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include"3_ALGraphKruskal.h"
+#include"3_DLinkedList.h"
+#include"3_ArrayBaseStack.h"
 
 int WhoIsPrecede(int data1, int data2);
 int PQWeightComp(Edge d1, Edge d2);
 
-
-
-// 그래프의 초기화
 void GraphInit(ALGraph * pg, int nv)
 {
 	int i;
 
-	pg->adjList = (List*)malloc(sizeof(List)*nv);
+	pg->adjList = (List *)malloc(sizeof(List) *nv);
 	pg->numV = nv;
-	pg->numE = 0; // 초기의 간선 수는 0개
+	pg->numE = 0;
 
 	for (i = 0; i < nv; i++)
 	{
@@ -31,7 +28,6 @@ void GraphInit(ALGraph * pg, int nv)
 	PQueueInit(&(pg->pqueue), PQWeightComp);
 }
 
-// 그래프의 리소스 해제
 void GraphDestroy(ALGraph * pg)
 {
 	if (pg->adjList != NULL)
@@ -41,10 +37,9 @@ void GraphDestroy(ALGraph * pg)
 		free(pg->visitInfo);
 }
 
-// 간선의 추가
 void AddEdge(ALGraph * pg, int fromV, int toV, int weight)
 {
-	Edge edge = { fromV, toV, weight };	// 간선의 정보 생성
+	Edge edge = { fromV, toV,weight };
 
 	LInsert(&(pg->adjList[fromV]), toV);
 	LInsert(&(pg->adjList[toV]), fromV);
@@ -58,10 +53,7 @@ void RecoverEdge(ALGraph * pg, int fromV, int toV, int weight)
 	LInsert(&(pg->adjList[fromV]), toV);
 	LInsert(&(pg->adjList[toV]), fromV);
 	(pg->numE)++;
-
 }
-
-
 
 void RemoveWayEdge(ALGraph * pg, int fromV, int toV)
 {
@@ -83,7 +75,6 @@ void RemoveWayEdge(ALGraph * pg, int fromV, int toV)
 				return;
 			}
 		}
-
 	}
 }
 
@@ -99,8 +90,6 @@ int PQWeightComp(Edge d1, Edge d2)
 	return d1.weight - d2.weight;
 }
 
-
-// 간선의 정보 출력
 void ShowGraphEdgeInfo(ALGraph * pg)
 {
 	int i;
@@ -121,16 +110,15 @@ void ShowGraphEdgeInfo(ALGraph * pg)
 	}
 }
 
-
 void ShowGraphEdgeWeightInfo(ALGraph * pg)
 {
 	PQueue copyPQ = pg->pqueue;
 	Edge edge;
 
-	while(!PQIsEmpty(&copyPQ))
+	while (!PQIsEmpty(&copyPQ))
 	{
 		edge = PDequeue(&copyPQ);
-		printf("(%c-%c), w:%d \n", edge.v1+65, edge.v2+65, edge.weight);
+		printf("(%c-%c), w:%d \n", edge.v1 + 65, edge.v2 + 65, edge.weight);
 	}
 }
 
@@ -141,31 +129,31 @@ int WhoIsPrecede(int data1, int data2)
 	else
 		return 1;
 }
-
-
-
+/////////////////////////////////////////////
 int VisitVertex(ALGraph * pg, int visitV)
 {
 	if (pg->visitInfo[visitV] == 0)
 	{
 		pg->visitInfo[visitV] = 1;
-		//printf("%c ", visitV + 65);
 		return TRUE;
 	}
 	return FALSE;
 }
+//void DFShowGraphVertex(ALGraph * pg);
+//
+//void ConKruskalMST(ALGraph * pg);
 
 int IsConnVertex(ALGraph * pg, int v1, int v2)
 {
 	Stack stack;
-	int visitV= v1;
+	int visitV = v1;
 	int nextV;
 
 	StackInit(&stack);
 	VisitVertex(pg, visitV);
 	SPush(&stack, visitV);
 
-	while (LFirst(&(pg->adjList[visitV]), &nextV)== TRUE)
+	while (LFirst(&(pg->adjList[visitV]), &nextV) == TRUE)
 	{
 		int visitFlag = FALSE;
 
@@ -183,7 +171,7 @@ int IsConnVertex(ALGraph * pg, int v1, int v2)
 		}
 		else
 		{
-			while (LNext(&(pg->adjList[visitV]), &nextV)==TRUE)
+			while (LNext(&(pg->adjList[visitV]), &nextV) == TRUE)
 			{
 				if (nextV == v2)
 				{
@@ -222,7 +210,7 @@ void ConKruskalMST(ALGraph * pg)
 	int eidx = 0;
 	int i;
 
-	while (pg->numE+1 > pg->numV)
+	while (pg->numE + 1 > pg->numV)
 	{
 		edge = PDequeue(&(pg->pqueue));
 		RemoveEdge(pg, edge.v1, edge.v2);

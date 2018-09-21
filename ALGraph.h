@@ -9,7 +9,7 @@ typedef struct _ual
 {
 	int numV;
 	int numE;
-	List * adjList; l;;
+	List * adjList;
 }ALGraph;
 
 // 그래프의 초기화
