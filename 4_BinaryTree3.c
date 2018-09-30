@@ -78,7 +78,7 @@ BTreeNode * RemoveRightSubTree(BTreeNode * bt)
 		bt->right = NULL;
 	}return delNode;
 }
-     ChagneLeftSubTree(pNode, dcNode);
+    
 void ChangeLeftSubTree(BTreeNode * main, BTreeNode * sub)
 {
 	main->left = sub;
