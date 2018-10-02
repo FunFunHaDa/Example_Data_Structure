@@ -8,6 +8,8 @@
 
 typedef int LData;
 // typedef Slot LData;
+
+
 typedef struct _node
 {
 	LData data;
