@@ -2,6 +2,11 @@
 #define __TABLE2_H__
 
 #include "Slot2.h"
+#include "4_DLinkedList.h"
+
+#define MAX_TBL 100
+
+typedef int HashFunc(Key k);
 
 typedef struct _table
 {
