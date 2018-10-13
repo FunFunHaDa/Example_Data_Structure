@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include "5_ALGraphDFS.h"
+#include"5_ALGraphBFS.h"
 
 int main(void)
 {
@@ -15,13 +15,11 @@ int main(void)
 	AddEdge(&graph, E, G);
 
 	ShowGraphEdgeInfo(&graph);
-
-	DFShowGraphVertex(&graph, A); printf("\n");
-	DFShowGraphVertex(&graph, C); printf("\n");
-	DFShowGraphVertex(&graph, E); printf("\n");
-	DFShowGraphVertex(&graph, G); printf("\n");
+	BFShowGraphVertex(&graph, A); printf("\n");
+	BFShowGraphVertex(&graph, C); printf("\n");
+	BFShowGraphVertex(&graph, E); printf("\n");
+	BFShowGraphVertex(&graph, G); printf("\n");
 
 	GraphDestroy(&graph);
 	return 0;
-
 }
