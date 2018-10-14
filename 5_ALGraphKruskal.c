@@ -92,8 +92,8 @@ void RemoveWayEdge(ALGraph * pg, int fromV, int toV)
 
 void RemoveEdge(ALGraph *pg, int fromV, int toV)
 {
-	RemoveEdge(pg, fromV, toV);
-	RemoveEdge(pg, toV, fromV);
+	RemoveWayEdge(pg, fromV, toV);
+	RemoveWayEdge(pg, toV, fromV);
 	(pg->numE)--;
 }
 
@@ -102,6 +102,157 @@ int PQweightComp(Edge d1, Edge d2)
 	return d1.weight - d2.weight;
 }
 
-void DFShowGraphVertex(ALGraph *pg, int startV);
-void ConKruskalMST(ALGraph * pg);
-void showGraphEdgeWeightInfo(ALGraph * pg);
+void ShowGraphEdgeInfo(ALGraph * pg)
+{
+	int i;
+	int vx; 
+
+	for (i = 0; i < pg->numV; i++)
+	{
+		printf("%c와 연결된 정점: ", i + 65);
+		if (LFirst(&(pg->adjList[i]), &vx))
+		{
+			printf("%c ", vx + 65);
+
+			while (LNext(&(pg->adjList[i]), &vx))
+				printf("%c ", vx + 65);
+		}
+		printf("\n");
+	}
+}
+
+void DFShowGraphVertex(ALGraph *pg, int startV)
+{
+	Stack stack;
+	int visitV = startV;
+	int nextV;
+
+	StackInit(&stack);
+	VisitVertex(pg, visitV);
+	SPush(&stack, visitV);
+
+	while (LFirst(&(pg->adjList[visitV]), &nextV) == TRUE)
+	{
+		int visitFalg = FALSE;
+
+		if (VisitVertex(pg, nextV) == TRUE)
+		{
+			SPush(&stack, visitV);
+			visitV = nextV;
+			visitFalg = TRUE;
+		}
+		else
+		{
+			while (LNext(&(pg->adjList[visitV]), &nextV) == TRUE)
+			{
+				if (VisitVertex(pg, nextV) == TRUE)
+				{
+					SPush(&stack, visitV);
+					visitV = nextV;
+					visitFalg = TRUE;
+					break;
+				}
+			}
+		}
+		if (visitFalg == FALSE)
+		{
+			if (SIsEmpty(&stack) == TRUE)
+				break;
+			else
+				visitV = SPop(&stack);
+		}
+	}
+	memset(pg->visitInfo, 0, sizeof(int)*pg->numV);
+}
+
+int IsConnVertex(ALGraph * pg, int v1, int v2)
+{
+	Stack stack;
+	int visitV = v1;
+	int nextV;
+
+	StackInit(&stack);
+	VisitVertex(pg, visitV);
+	SPush(&stack, visitV);
+
+	while (LFirst(&(pg->adjList[visitV]), &nextV) == TRUE)
+	{
+		int visitFlag = FALSE;
+
+		if (nextV == v2)
+		{
+			memset(pg->visitInfo, 0, sizeof(int)*pg->numV);
+			return TRUE;
+		}
+
+		if (VisitVertex(pg, nextV) == TRUE)
+		{
+			SPush(&stack, visitV);
+			visitV = nextV;
+			visitFlag = TRUE;
+		}
+		else
+		{
+			while (LNext(&(pg->adjList[visitV]), &nextV) == TRUE)
+			{
+				if (nextV == v2)
+				{
+					memset(pg->visitInfo, 0, sizeof(int) * pg->numV);
+					return TRUE;
+				}
+
+				if (VisitVertex(pg, nextV) == TRUE)
+				{
+					SPush(&stack, visitV);
+					visitV = nextV;
+					visitFlag = TRUE;
+					break;
+				}
+			}
+		}
+		if (visitFlag == FALSE)
+		{
+			if (SIsEmpty(&stack) == TRUE)
+				break;
+			else
+				visitV = SPop(&stack);
+		}
+	}
+	memset(pg->visitInfo, 0, sizeof(int)*pg->numV);
+	return FALSE;
+}
+
+void ConKruskalMST(ALGraph * pg)
+{
+	Edge recvEdge[20];
+	Edge edge;
+	int eidx = 0;
+	int i;
+
+	while (pg->numE + 1 > pg->numV)
+	{
+		edge = PDequeue(&(pg->pqueue));
+		RemoveEdge(pg, edge.v1, edge.v2);
+
+		if (!IsConnVertex(pg, edge.v1, edge.v2))
+		{
+			RecoverEdge(pg, edge.v1, edge.v2, edge.weight);
+			recvEdge[eidx++] = edge;
+		}
+	}
+	for (i = 0; i < eidx; i++)
+		PEnqueue(&(pg->pqueue), recvEdge[i]);
+}
+
+void ShowGraphEdgeWeightInfo(ALGraph * pg)
+{
+	PQueue copyPQ = pg->pqueue;
+	Edge edge;
+
+	while (!PQIsEmpty(&copyPQ))
+	{
+		edge = PDequeue(&copyPQ);
+		printf("(%c-%c), w:%d \n", edge.v1 + 65, edge.v2 + 65, edge.weight);
+	}
+	
+}

@@ -19,9 +19,10 @@ typedef struct _ual
 void GraphInit(ALGraph * pg, int nv);
 void GraphDestroy(ALGraph * pg);
 void AddEdge(ALGraph * pg, int fromV, int toV, int weight);
-void ShowGraphEdgeInfo(ALGraph * pg);
 void DFShowGraphVertex(ALGraph *pg, int startV);
 void ConKruskalMST(ALGraph * pg);
-void showGraphEdgeWeightInfo(ALGraph * pg);
+void ShowGraphEdgeWeightInfo(ALGraph * pg);
+void ShowGraphEdgeInfo(ALGraph * pg);
+
 
 #endif // !__AL_GRAPH_KRUSKAL__
