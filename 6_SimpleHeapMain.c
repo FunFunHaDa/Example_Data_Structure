@@ -19,5 +19,5 @@ int main(void)
 	while (!HisEmpty(&heap))
 		printf("%c \n", HDelete(&heap));
 
-	return 0;
+	return 0;	
 }
