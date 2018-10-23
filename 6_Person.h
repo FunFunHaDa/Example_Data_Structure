@@ -3,7 +3,7 @@
 
 #define STR_LEN 50
 
-typedef struct _person
+typedef struct _Person
 {
 	int ssn;
 	char name[STR_LEN];

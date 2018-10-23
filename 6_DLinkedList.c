@@ -49,7 +49,7 @@ void LInsert(List * plist, LData data)
 
 int LFirst(List * plist, LData * pdata)
 {
-	if (plist->comp = NULL)
+	if (plist->head->next == NULL)
 		return FALSE;
 
 	plist->before = plist->head;
