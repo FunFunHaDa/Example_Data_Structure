@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "6_BinaryTree3.h"
-#include "6_BinarySearchTree2.h"
+#include "7_BinaryTree3.h"
+#include "7_BinarySearchTree3.h"
+#include "7_AVLRebalance.h"
 
 void BSTMakeAndInit(BTreeNode ** pRoot)
 {
@@ -44,9 +45,11 @@ void BSTInsert(BTreeNode ** pRoot, BSTData data)
 	{
 		*pRoot = nNode;
 	}
+
+	*pRoot = Rebalance(pRoot);
 }
 
-BTreeNode * BSTSearch(BTreeNode* bst, BSTData target)
+BTreeNode * BSTSearch(BTreeNode * bst, BSTData target)
 {
 	BTreeNode * cNode = bst;
 	BSTData cd;
@@ -59,13 +62,11 @@ BTreeNode * BSTSearch(BTreeNode* bst, BSTData target)
 			return cNode;
 		else if (target < cd)
 			cNode = GetLeftSubTree(cNode);
-		else
-			cNode = GetRightSubTree(cNode);
 	}
 	return NULL;
 }
 
-BTreeNode * BSTRemove(BTreeNode **  pRoot, BSTData target)
+BTreeNode * BSTRemove(BTreeNode ** pRoot, BSTData target)
 {
 	BTreeNode * pVRoot = MakeBTreeNode();
 	BTreeNode * pNode = pVRoot;
@@ -82,7 +83,6 @@ BTreeNode * BSTRemove(BTreeNode **  pRoot, BSTData target)
 		else
 			cNode = GetRightSubTree(cNode);
 	}
-	//
 	if (cNode == NULL)
 		return NULL;
 	dNode = cNode;
@@ -122,7 +122,6 @@ BTreeNode * BSTRemove(BTreeNode **  pRoot, BSTData target)
 		delData = GetData(dNode);
 		SetData(dNode, GetData(mNode));
 
-
 		if (GetLeftSubTree(mpNode) == mNode)
 			ChangeLeftSubTree(mpNode, GetRightSubTree(mNode));
 		else
@@ -131,9 +130,11 @@ BTreeNode * BSTRemove(BTreeNode **  pRoot, BSTData target)
 		SetData(dNode, delData);
 	}
 	if (GetRightSubTree(pVRoot) != *pRoot)
-	*pRoot = GetRightSubTree(pVRoot);
+		*pRoot = GetRightSubTree(pVRoot);
 
 	free(pVRoot);
+
+	*pRoot = Rebalance(pRoot);
 	return dNode;
 }
 
