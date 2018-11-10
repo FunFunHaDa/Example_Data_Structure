@@ -5,9 +5,9 @@
 #define FALSE 0
 
 #define HEAP_LEN 100
-
+#include "8_ALEdge.h"
 //typedef char HData;
-typedef int HData;
+typedef Edge HData;
 
 typedef int PriorityComp(HData d1, HData d2);
 
