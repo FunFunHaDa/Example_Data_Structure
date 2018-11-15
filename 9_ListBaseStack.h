@@ -3,8 +3,10 @@
 
 #define TRUE 1
 #define FALSE 0
+#include "9_BinaryTree2.h"
 
-typedef int Data;
+typedef BTreeNode * Data;
+// typedef int Data;
 
 typedef struct _node
 {
