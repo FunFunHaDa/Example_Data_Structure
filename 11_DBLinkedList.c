@@ -36,7 +36,7 @@ int LNext(List * plist, Data * pdata)
 	if (plist->cur->next == NULL)
 		return FALSE;
 
-	plist->cur = plist->cur->prev;
+	plist->cur = plist->cur->next;
 	*pdata = plist->cur->data;
 
 	return TRUE;
