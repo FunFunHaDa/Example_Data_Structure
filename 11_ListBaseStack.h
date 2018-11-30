@@ -1,10 +1,12 @@
 #ifndef __LB_STACK_H__
 #define __LB_STACK_H__
 
+#include "11_BinaryTree2.h"
+
 #define TRUE 1
 #define FALSE 0
-
-typedef int Data;
+typedef BTreeNode * Data;
+//typedef int Data;
 
 typedef struct _node
 {
