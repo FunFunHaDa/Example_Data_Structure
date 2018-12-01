@@ -54,7 +54,6 @@ int EvaluateExpTree(BTreeNode * bt)
 		return op1 / op2;
 	}
 	return 0;
-	
 }
 
 void ShowNodeData(int data)
