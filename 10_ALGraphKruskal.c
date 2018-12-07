@@ -174,7 +174,7 @@ int IsConnVertex(ALGraph * pg, int v1, int v2)
 	while (LFirst(&(pg->adjList[visitV]), &nextV) == TRUE)
 	{
 		int visitFlag = FALSE;
-		if (nextV == v2)
+		if (nextV == v2)f
 		{
 			memset(pg->visitInfo, 0, sizeof(int)*pg->numV);
 			return TRUE;
