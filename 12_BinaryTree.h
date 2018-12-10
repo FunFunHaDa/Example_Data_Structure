@@ -1,5 +1,5 @@
 #ifndef __BINARY_TREE_H__
-#define __BIANRY_TREE_H__
+#define __BINARY_TREE_H__
 
 typedef int BTData;
 
