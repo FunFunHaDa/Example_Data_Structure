@@ -243,7 +243,7 @@ void ConKruskalMST(ALGraph * pg)
 
 	while (pg->numE + 1 > pg->numV)
 	{
-		edge = PDequeue(&(pg->pqueue));
+		edge = PDequeue(&(pg->numV));
 		RemoveEdge(pg, edge.v1, edge.v2);
 
 		if (!IsConnVertex(pg, edge.v1, edge.v2))
