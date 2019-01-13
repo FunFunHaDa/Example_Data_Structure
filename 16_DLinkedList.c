@@ -22,7 +22,7 @@ void SInsert(List * plist, LData data)
 	Node * newNode = (Node*)malloc(sizeof(Node));
 	Node * pred = plist->head;
 	newNode->data = data;
-	while (pred->next != NULL && plist->comp(data, pred->next->next) != 0)
+	while (pred->next != NULL && plist->comp(data, pred->next->data) != 0)
 		pred = pred->next;
 
 	newNode->next = pred->next;
