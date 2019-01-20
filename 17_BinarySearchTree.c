@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include "17_BinarySearchTree.h"
 #include "17_BinaryTree.h"
+#include "17_AVLRebalance.h"
 
 void BSTMakeAndInit(BTreeNode **  pRoot)
 {
@@ -40,6 +41,7 @@ void BSTInsert(BTreeNode ** pRoot, BSTData data)
 	}
 	else
 		*pRoot = nNode;
+	*pRoot = Rebalance(pRoot);
 }
 BTreeNode * BSTSearch(BTreeNode * bst, BSTData target)
 {
@@ -128,6 +130,9 @@ BTreeNode * BSTRemove(BTreeNode ** pRoot, BSTData target)
 		*pRoot = GetRightSubTree(pVRoot);
 
 	free(pVRoot);
+	return dNode;
+
+	*pRoot = Rebalance(pRoot);
 	return dNode;
 }
 
