@@ -1,11 +1,12 @@
 #ifndef __USEFUL_HEAP_H__
 #define __USEFUL_HEAP_H__
-
+#include "18_ALEdge.h"
 #define TRUE 1
 #define FALSE 0
 
 #define HEAP_LEN 100
-typedef int HData;
+// typedef int HData;
+typedef Edge HData;
 
 // typedef char HData;
 typedef int PriorityComp(HData d1, HData d2);

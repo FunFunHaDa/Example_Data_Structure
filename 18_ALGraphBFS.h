@@ -1,5 +1,5 @@
-#ifndef __AL_GRAPH_DFS__
-#define __AL_GRAPH_DFS__
+#ifndef __AL_GRAPH_BFS__
+#define __AL_GRAPH_BFS__
 
 #include "18_DLinkedList.h"
 
@@ -17,6 +17,5 @@ void GraphInit(ALGraph * pg, int nv);
 void GraphDestroy(ALGraph * pg);
 void AddEdge(ALGraph * pg, int fromV, int toV);
 void ShowGraphEdgeInfo(ALGraph * pg);
-void DFShowGraphVertex(ALGraph * pg, int startV);
-
-#endif // !__AL_GRAPH_DFS___
+void BFShowGraphVertex(ALGraph * pg, int startV);
+#endif // !__AL_GRAPH_BFS__
