@@ -3,8 +3,9 @@
 
 #define TRUE 1
 #define FALSE 0
-
-typedef int LData;
+#include "19_Slot2.h"
+typedef Slot LData;
+// typedef int LData;
 
 typedef struct _node
 {
