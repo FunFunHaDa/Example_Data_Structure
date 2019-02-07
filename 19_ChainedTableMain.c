@@ -15,12 +15,11 @@ int main(void)
 	Person * sp;
 	Person * rp;
 
+	TBLInit(&myTbl, MyHashFunc);
+
 	np = MakePersonData(900254, "Lee", "Seoul");
-	puts("asf");
 	TBLInsert(&myTbl, GetSSN(np), np);
-	puts("asf");
 	np = MakePersonData(900139, "KIM", "Jeju");
-	puts("asf");
 	TBLInsert(&myTbl, GetSSN(np), np);
 	np = MakePersonData(900827, "HAN", "Kangwon");
 	TBLInsert(&myTbl, GetSSN(np), np);
