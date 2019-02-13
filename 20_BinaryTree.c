@@ -65,3 +65,32 @@ void PostorderTraverse(BTreeNode * bt, VisitFuncPtr action)
 	PostorderTraverse(bt->right, action);
 	action(bt->data);
 }
+
+BTreeNode * RemoveLeftSubTree(BTreeNode * bt)
+{
+	BTreeNode * delNode;
+	if (bt != NULL)
+	{
+		delNode = bt->left;
+		bt->left = NULL;
+	}
+	return delNode;
+}
+BTreeNode * RemovaRightSubTree(BTreeNode * bt)
+{
+	BTreeNode * delNode;
+	if (bt != NULL)
+	{
+		delNode = bt->right;
+		bt->right = NULL;
+	}
+	return delNode;
+}
+void ChangeLeftSubTree(BTreeNode * main, BTreeNode * sub)
+{
+	main->left = sub;
+}
+void ChangeRightSubTree(BTreeNode * main, BTreeNode * sub)
+{
+	main->right = sub;
+}
