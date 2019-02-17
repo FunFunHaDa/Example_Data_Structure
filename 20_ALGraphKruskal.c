@@ -45,7 +45,7 @@ void RecoverEdge(ALGraph * pg, int fromV, int toV, int weight)
 	LInsert(&(pg->adjList[toV]), fromV);
 	(pg->numE)++;
 }
-void RemoveWayEdge(ALGraph * pg, int fromV, int toV)s
+void RemoveWayEdge(ALGraph * pg, int fromV, int toV)
 {
 	int edge;
 
