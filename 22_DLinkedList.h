@@ -16,16 +16,16 @@ typedef struct _linkedList
 	Node * head;
 	Node * cur;
 	Node * before;
-	Node numOfData;
+	int numOfData;
 	int(*comp)(LData d1, LData d2);
 }LinkedList;
 
 typedef LinkedList List;
 
 void ListInit(List * plist);
-void LInsert(List * plist, LData * pdata);
+void LInsert(List * plist, LData  data);
 
-int LFirst(List * plist LData * pdata);
+int LFirst(List * plist, LData * pdata);
 int LNext(List * plist, LData * pdata);
 
 LData LRemove(List * plist);
