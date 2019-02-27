@@ -10,7 +10,7 @@ int main(void)
 	SPush(&stack, 2);
 	SPush(&stack, 3);
 	SPush(&stack, 4);
-	SPush(&stack, 5);
+	SPush(&stack, 5); 
 	while (!SIsEmpty(&stack))
 		printf("%d ", SPop(&stack));
 	return 0;

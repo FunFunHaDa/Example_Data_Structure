@@ -23,5 +23,4 @@ void Enqueue(Queue * pq, Data data);
 Data Dequeue(Queue * pq);
 Data QPeek(Queue * pq);
 
-
 #endif // !__C_QUEUE_H__
