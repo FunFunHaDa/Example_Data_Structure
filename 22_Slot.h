@@ -5,7 +5,7 @@
 typedef int Key;
 typedef Person * Value;
 
-enum SlotStatus { EMPTY < DELETED, INUSE };
+enum SlotStatus { EMPTY ,DELETED, INUSE };
 
 typedef struct _slot
 {
