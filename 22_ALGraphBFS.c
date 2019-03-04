@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include"22_ALGraphDFS.h"
-#include"22_DLinkedList.h"
-#include"22_ArrayBaseStack.h"
+#include "22_ALGraphBFS.h"
+#include "22_DLinkedList.h"
+#include "22_CircularQueuee.h"
 
 int WhoIsPrecede(int data1, int data2);
 
@@ -71,46 +71,30 @@ int VisitVertex(ALGraph * pg, int visitV)
 	}
 	return FALSE;
 }
-void DFShowGraphVertex(ALGraph * pg, int startV)
+void BFShowGraphVertex(ALGraph * pg, int startV)
 {
-	Stack stack;
+	Queue queue;
 	int visitV = startV;
 	int nextV;
 
-	StackInit(&stack);
+	QueueInit(&queue);
 	VisitVertex(pg, visitV);
-	SPush(&stack, visitV);
 
 	while (LFirst(&(pg->adjList[visitV]), &nextV) == TRUE)
 	{
-		int visitFlag = FALSE;
-
 		if (VisitVertex(pg, nextV) == TRUE)
+			Enqueue(&queue, nextV);
+
+		while (LNext(&(pg->adjList[visitV]), &nextV) == TRUE)
 		{
-			SPush(&stack, visitV);
-			visitV = nextV;
-			visitFlag = TRUE;
+			if (VisitVertex(pg, nextV) == TRUE)
+				Enqueue(&queue, nextV);
 		}
+
+		if (QIsEmpty(&queue) == TRUE)
+			break;
 		else
-		{
-			while (LNext(&(pg->adjList[visitV]), &nextV) == TRUE)
-			{
-				if (VisitVertex(pg, nextV) == TRUE)
-				{
-					SPush(&stack, visitV);
-					visitV = nextV;
-					visitFlag = TRUE;
-					break;
-				}
-			}
-		}
-		if (visitFlag == FALSE)
-		{
-			if (SIsEmpty(&stack) == TRUE)
-				break;
-			else
-				visitV = SPop(&stack);
-		}
+			visitV = Dequeue(&queue);
 	}
 	memset(pg->visitInfo, 0, sizeof(int) * pg->numV);
 }
