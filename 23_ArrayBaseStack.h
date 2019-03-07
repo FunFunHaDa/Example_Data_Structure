@@ -21,4 +21,5 @@ int SIsEmpty(Stack *pstck);
 void SPush(Stack * pstack, Data data);
 Data SPop(Stack * pstack);
 Data SPeek(Stack * pstack);
+
 #endif // !__AB_STACK_H__
