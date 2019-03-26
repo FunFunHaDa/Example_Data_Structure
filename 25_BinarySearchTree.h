@@ -9,4 +9,7 @@ BSTData BSTGetNodeData(BTreeNode * bst);
 void BSTInsert(BTreeNode ** pRoot, BSTData data);
 BTreeNode * BSTSearch(BTreeNode * bst, BSTData target);
 
+BTreeNode * BSTRemove(BTreeNode **pRoot, BTData target);
+void BSTShowAll(BTreeNode * bst);
+
 #endif // !__BINARY_SEARCH_TREE_H_
