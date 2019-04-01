@@ -21,7 +21,7 @@ typedef struct _dlDeque
 
 typedef DLDeque Deque;
 
-void QueueInit(Deque * pdeq);
+void DequeInit(Deque * pdeq);
 int DQIsEmpty(Deque * pdeq);
 
 void DQAddFirst(Deque * pdeq, Data data);
