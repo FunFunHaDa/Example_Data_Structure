@@ -15,5 +15,4 @@ typedef struct _slot
 	enum SlotStatus status;
 }Slot;
 
-
 #endif // !__SLOT_H__
