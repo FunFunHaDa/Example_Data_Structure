@@ -9,7 +9,7 @@ typedef struct _node
 
 int main(void)
 {
-	Node * head;
+	Node * head = NULL;
 	Node * tail = NULL;
 	Node * cur = NULL;
 
@@ -61,7 +61,7 @@ int main(void)
 		Node * delNode = head;
 		Node * delNextNode = head->next;
 
-		printf("%d을(를) 삭제합니다. \n", head->next);
+		printf("%d을(를) 삭제합니다. \n", head->data);
 		free(delNode);
 
 		while (delNextNode != NULL)
