@@ -22,6 +22,8 @@ BTreeNode * RotateRR(BTreeNode * bst)
 	pNode = bst;
 	cNode = GetRightSubTree(pNode);
 
+	ChangeRightSubTree(pNode, GetLeftSubTree(cNode));
+	ChangeLeftSubTree(cNode, pNode);
 	return cNode;
 }
 BTreeNode * RotateRL(BTreeNode * bst)
