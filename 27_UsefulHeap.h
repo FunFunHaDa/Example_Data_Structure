@@ -3,11 +3,12 @@
 
 #define TRUE 1
 #define FALSE 0
-
+#include "27_ALEdge.h"
 #define HEAP_LEN 100
 
 // typedef char HData;
-typedef int HData;
+// typedef int HData;
+typedef Edge HData;
 
 typedef int PriorityComp(HData d1, HData d2);
 
