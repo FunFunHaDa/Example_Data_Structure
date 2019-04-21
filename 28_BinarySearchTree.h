@@ -1,6 +1,5 @@
 #ifndef __BINARY_SEARCH_TREE_H__
 #define __BINARY_SEARCH_TREE_H__
-
 #include "28_BinaryTree.h"
 
 typedef BTData BSTData;
