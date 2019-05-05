@@ -165,6 +165,73 @@ void DFShowGraphVertex(ALGraph * pg, int startV)
 int IsConnVertex(ALGraph * pg, int v1, int v2)
 {
 	Stack stack;
+	int visitV = v1;
+	int nextV;
+	StackInit(&stack);
+	VisitVetex(pg, visitV);
+	SPush(&stack, visitV);
+
+	while (LFirst(&(pg->adjList[visitV]), &nextV) == TRUE)
+	{
+		int visitFlag = FALSE;
+		if (nextV == v2)
+		{
+			memset(pg->visitInfo, 0, sizeof(int) * pg->numV);
+			return TRUE;
+		}
+		if (VisitVetex(pg, nextV) == TRUE)
+		{
+			SPush(&stack, visitV);
+			visitV = nextV;
+			visitFlag = TRUE;
+		}
+		else
+		{
+			while (LNext(&(pg->adjList[visitV]), &nextV) == TRUE)
+			{
+				if (nextV == v2)
+				{
+					memset(pg->visitInfo, 0, sizeof(int) * pg->numV);
+					return TRUE;
+				}
+				if (VisitVetex(pg, nextV) == TRUE)
+				{
+					SPush(&stack, visitV);
+					visitV = nextV;
+					visitFlag = TRUE;
+					break;
+				}
+			}
+		}
+		if (visitFlag == FALSE)
+		{
+			if (SIsEmpty(&stack) == TRUE)
+				break;
+			else
+				visitV = SPop(&stack);
+		}
+	}
+	memset(pg->visitInfo, 0, sizeof(int) * pg->numV);
+	return FALSE;
 	
 }
-void ConKruskalMST(ALGraph * pg);
+void ConKruskalMST(ALGraph * pg)
+{
+	Edge recvEdge[20];
+	Edge edge;
+	int eidx = 0;
+	int i;
+
+	while (pg->numE + 1 > pg->numV)
+	{
+		edge = PDequeue(&(pg->pqueue));
+		RemoveEdge(pg, edge.v1, edge.v2);
+		if (!IsConnVertex(pg, edge.v1, edge.v2))
+		{
+			RecoverEdge(pg, edge.v1, edge.v2, edge.weight);
+			recvEdge[eidx++] = edge;
+		}
+	}
+	for (i = 0; i < eidx; i++)
+		PEnqueue(&(pg->pqueue), recvEdge[i]);
+}
