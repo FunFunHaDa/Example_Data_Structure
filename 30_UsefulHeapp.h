@@ -16,8 +16,9 @@ typedef struct _heap
 }Heap;
 
 void HeapInit(Heap * ph, PriorityComp pc);
-int HIsEmpty(Hea * ph);
+int HIsEmpty(Heap * ph);
 
 void HInsert(Heap * ph, HData data);
 HData HDelete(Heap * ph);
+	
 #endif // !__USEFUL_HEAP_H__
